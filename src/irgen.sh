@@ -20,8 +20,8 @@ fi
 echo -e $NEW_CMD >$KERNEL_SRC/IRDumper.cmd
 cat $KERNEL_SRC/Makefile.bak $KERNEL_SRC/IRDumper.cmd >$KERNEL_SRC/Makefile
 
-cd $KERNEL_SRC && make $CONFIG
+cd $KERNEL_SRC && make CC=$CLANG $CONFIG
 echo $CLANG
 echo $NEW_CMD
-make CC=$CLANG -j72 -k -i V=1 2>&1 | tee make.log
+make CC=$CLANG -j`nproc` -k -i V=1 2>&1 | tee make.log
 
